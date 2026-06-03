@@ -4,6 +4,7 @@ import os
 
 # Installed Modules
 import pytest
+from src.calculations import area_of_circle, get_nth_fibonacci
 
 # Project Modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
@@ -58,13 +59,18 @@ def test_get_nth_fibonacci_ten():
     assert result == 55
 
 
-# def test_get_nth_fibonacci_ten():
-#     """Test with n=10."""
-#     # Arrange
-#     n = 10
+# --- NOVOS TESTES PARA ATINGIR 100% DE COBERTURA ---
 
-#     # Act
-#     result = get_nth_fibonacci(n)
+def test_area_of_circle_negative():
+    """Test circle area with negative radius."""
+    with pytest.raises(ValueError):
+        area_of_circle(-1)
 
-#     # Assert
-#     assert result == 89
+def test_get_nth_fibonacci_negative():
+    """Test fibonacci with negative index."""
+    with pytest.raises(ValueError):
+        get_nth_fibonacci(-1)
+
+def test_get_nth_fibonacci_one():
+    """Test fibonacci with n=1."""
+    assert get_nth_fibonacci(1) == 1
